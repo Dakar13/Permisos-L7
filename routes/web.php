@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\L7Permission\Models\Role;
 use App\User;
+use App\L7Permission\Models\Role;
+use App\L7Permission\Models\Permission;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,12 +49,26 @@ Route::get('/test', function () {
     ]);
     */
     
-    $user = User::find(1);
+    // $user = User::find(1);
     // $user->roles()->attach([1,4,6]);
     // $user->roles()->detach([4]);
-    $user->roles()->sync([1]);
+    // $user->roles()->sync([1]);
 
-    // return $user;
-    return $user->roles;
+    // // return $user;
+    // return $user->roles;
+
+/*
+    return Permission::create([
+        'name' => 'List product',
+        'slug' => 'product.index',
+        'description' => 'A user can list a product',
+    ]);
+*/
+
+    $role = Role::find(1);
+
+    $role->permissions()->sync([1]);
+
+    return $role->permissions;
 
 });

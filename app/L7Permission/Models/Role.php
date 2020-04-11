@@ -16,4 +16,8 @@ class Role extends Model
     public function users(){
         return $this->belongsToMany('App\User')->withTimesTamps();
     }
+
+    public function permissions(){
+        return $this->belongsToMany('App\L7Permission\Models\Permission')->withTimesTamps();
+    }
 }
